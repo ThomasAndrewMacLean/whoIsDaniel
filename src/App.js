@@ -4,25 +4,27 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { pic: './0.jpg', text: 'Dat ben ikke...' };
+    this.state = { pic: 0, text: 0 };
   }
   switchPic() {
-    let random = ['en ik..', 'en jij???¿?', 'dit ook 🤖', 'dat ben IK', 'uhu...', 'wie ben jij?', 'gijzelf!']
-    let x = Math.floor(Math.random() * 7);
-    
-    let y = Math.floor(Math.random() * 7);
 
-    this.setState({ pic: x + '.jpg', text: random[y] })
+    let newPic = (this.state.pic + Math.floor(Math.random() * 6)) % 7;
+    let newText = (this.state.pic + Math.floor(Math.random() * 7)) % 8;
+    console.log(newPic);
+    console.log(newText);
+
+    this.setState({ pic: newPic, text: newText })
   }
 
 
 
   render() {
+    let random = ['Dat ben ikke...', 'en ik..', 'en jij???¿?', 'dit ook 🤖', 'dat ben IK', 'uhu...', 'wie ben jij?', 'gijzelf!']
     return (
       <div className="App" onClick={() => this.switchPic()} >
-        <img src={this.state.pic} className="daniel" alt="logo" />
+        <img src={`./${this.state.pic}.jpg`} className="daniel" alt="logo" />
         <div className="datbenik">
-          {this.state.text}  </div>
+          {random[this.state.text]}  </div>
       </div>
     );
   }

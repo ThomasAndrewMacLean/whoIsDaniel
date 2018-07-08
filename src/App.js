@@ -4,12 +4,12 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { pic: 0, text: 0 };
+    this.state = { pic: 0, text: 0, colors: 0 };
   }
   switchPic() {
 
-    let newPic = (this.state.pic + Math.floor(Math.random() * 6)) % 7;
-    let newText = (this.state.pic + Math.floor(Math.random() * 7)) % 8;
+    let newPic = (1 + this.state.pic + Math.floor(Math.random() * 5)) % 7;
+    let newText = (1 + this.state.pic + Math.floor(Math.random() * 6)) % 8;
     console.log(newPic);
     console.log(newText);
 
@@ -20,12 +20,14 @@ class App extends Component {
 
   render() {
     let random = ['Dat ben ikke...', 'en ik..', 'en jij???¿?', 'dit ook 🤖', 'dat ben IK', 'uhu...', 'wie ben jij?', 'gijzelf!']
+    let colors = ['deeppink', 'goldenrod']
+
     return (
       <div className="App" onClick={() => this.switchPic()} >
         <img src={`./${this.state.pic}.jpg`} className="daniel" alt="logo" />
-        <div className="datbenik">
+        <div className="datbenik" style={colors[this.state.color]}>
           {random[this.state.text]}  </div>
-      </div>
+      </div >
     );
   }
 }

@@ -33,7 +33,7 @@ class App extends Component {
                     meaning: upside ? tarot.cards[0].meaning_rev : tarot.cards[0].meaning_up
                 };
                 this.setState({ tarot: card });
-            }).catch(err => console.log(err));
+            }).catch(err => console.error(err));
     }
     closeTarot() {
         this.setState({ tarot: null });
@@ -48,7 +48,7 @@ class App extends Component {
         fd.append('tags', 'whoIsDaniel'); // Optional - add tag for image admin in Cloudinary
         fd.append('file', file);
 
-        axios(api.CLOUDINARY_URL, {
+        axios(api.CLOUDINARY_URL + '/w_200', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencode'

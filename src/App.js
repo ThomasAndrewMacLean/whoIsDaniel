@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as api from './api/api';
-import Tarot from './tarot';
+import Tarot from './Tarot';
+import Contact from './Contact';
 import axios from 'axios';
 
 let images = ['./0.jpg', './1.jpg', './2.jpg', './3.jpg', './4.jpg', './5.jpg', './6.jpg'];
@@ -15,7 +16,7 @@ class App extends Component {
                 images = images.concat(urls);
             });
         });
-        this.state = { pic: 0, text: 0, color: 0, left: 40, top: 50, camera: 'none', tarot: null };
+        this.state = { pic: 0, text: 0, color: 0, left: 40, top: 50, camera: 'none', tarot: null, contact: null };
     }
     switchPic() {
         //TODO make more dynamic
@@ -43,6 +44,12 @@ class App extends Component {
     }
     closeTarot() {
         this.setState({ tarot: null });
+    }
+    getContact() {
+        this.setState({ contact: true });
+    }
+    closeContact() {
+        this.setState({ contact: null });
     }
     handleChange(files) {
         const file = files[0];
@@ -101,7 +108,9 @@ class App extends Component {
                 <input type="file" id="addPhotoke" onChange={(e) => this.handleChange(e.target.files)} />
                 <label style={cameraStyle} className="addPhotoBtn" htmlFor="addPhotoke"><span role="img" aria-label="camera">📷</span>  </label>
                 <button onClick={() => this.getTarot()} style={cameraStyle} className="tarotBtn"><span role="img" aria-label="tarotcard">🃏</span></button>
+                <button onClick={() => this.getContact()} style={cameraStyle} className="contactBtn"><span role="img" aria-label="contactBtn">💖</span></button>
                 {this.state.tarot && <Tarot card={this.state.tarot} close={() => this.closeTarot()} />}
+                {this.state.contact && <Contact close={() => this.closeContact()} />}
             </div >
         );
     }

@@ -32,7 +32,22 @@ body{
   border: 5px solid firebrick;
 
 }
+.contactBtn{
+  position: absolute;
+  top:6rem;
+  right:2rem;
+  font-size: 3rem;
+  background: lightgreen;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+ 
+  justify-content: center;
+  align-items: center;
+  border: 5px solid darkcyan;
 
+
+}
 .addPhotoBtn{
   position: absolute;
   bottom:3rem;
@@ -87,4 +102,31 @@ input[type=file]{
   bottom:0;
   right:0;
   left:0;
+}
+
+.sendBtn{
+  width:100%;
+  font-size: 3rem;
+  background: whitesmoke;
+  color: palevioletred;
+  height: 4rem;
+}
+
+.contact{
+  overflow: auto;
+  font-size:2rem;
+  opacity: 0.9;
+  background: goldenrod;
+  color: darkslategrey;
+  position: absolute;
+  height: 100vh;
+  color: green;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+padding:1rem;
+}
+.label{
+  font-size: 1rem;
 }

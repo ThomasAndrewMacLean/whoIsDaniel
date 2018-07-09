@@ -8,7 +8,7 @@ class Tarot extends Component {
                 <button className="closeTarot" onClick={() => this.props.close()}>close ✌️</button>
                 <div className="tarotName">
                     {this.props.card.name}
-                    {this.props.card.up ? '👍' : '👎'}
+                    {this.props.card.up ? '🙂' : '🙃'}
                 </div>
                 <div className="tarotMeaning">
                     {this.props.card.meaning}

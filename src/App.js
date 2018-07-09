@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { tarotApi } from './api/tarot';
+import * as api from './api/api';
 import Tarot from './tarot';
-
+import axios from 'axios';
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class App extends Component {
         this.setState({ pic: newPic, text: newText, color: newColor, left: newLeft, top: newTop, camera: 'flex' });
     }
     getTarot() {
-        fetch(tarotApi)
+        fetch(api.tarotApi)
             .then(res => res.json())
             .then(tarot => {
                 const upside = Math.random() > 0.5;
@@ -38,7 +38,47 @@ class App extends Component {
     closeTarot() {
         this.setState({ tarot: null });
     }
+    handleChange(files) {
+        console.log(files);
+        const file = files[0];
+        //   const cloudName = 'dizmjjtge';
 
+        var fd = new FormData();
+        fd.append('upload_preset', api.CLOUDINARY_UPLOAD_PRESET);
+        fd.append('tags', 'whoIsDaniel'); // Optional - add tag for image admin in Cloudinary
+        fd.append('file', file);
+
+        axios(api.CLOUDINARY_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencode'
+            },
+            data: fd
+        }).then(img => {
+            console.log(img);
+            const url = img.data.secure_url;
+            fetch(api.setDanielApi, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    imgUrl: url
+                })
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+
+
+        //var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+        // var xhr = new XMLHttpRequest();
+        // xhr.open('POST', url, true);
+        // xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        // xhr.send(fd);
+    }
     render() {
         let random = ['Dat ben ikke...', 'en ik..', 'en jij???¿?', 'dit ook 🤖', 'dat ben IK', 'uhu...', 'wie ben jij?', 'gijzelf!'];
         let top = [30, 60, 50, 10, 20];
@@ -59,7 +99,7 @@ class App extends Component {
                 <img src={`./${this.state.pic}.jpg`} className="daniel" alt="logo" onClick={() => this.switchPic()} />
                 <div className="datbenik" style={colorStyle}>
                     {random[this.state.text]}  </div>
-                <input type="file" id="addPhotoke" />
+                <input type="file" id="addPhotoke" onChange={(e) => this.handleChange(e.target.files)} />
                 <label style={cameraStyle} className="addPhotoBtn" htmlFor="addPhotoke"><span role="img" aria-label="camera">📷</span>  </label>
                 <button onClick={() => this.getTarot()} style={cameraStyle} className="tarotBtn"><span role="img" aria-label="tarotcard">🃏</span></button>
                 {this.state.tarot && <Tarot card={this.state.tarot} close={() => this.closeTarot()} />}

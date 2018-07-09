@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as api from './api/api';
-import Tarot from './Tarot';
-import Contact from './Contact';
+import Tarot from './components/Tarot';
+import Contact from './components/Contact';
 import axios from 'axios';
 
 let images = ['./0.jpg', './1.jpg', './2.jpg', './3.jpg', './4.jpg', './5.jpg', './6.jpg'];

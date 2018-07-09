@@ -4,14 +4,22 @@ import * as api from './api/api';
 import Tarot from './tarot';
 import axios from 'axios';
 
+let images = ['./0.jpg', './1.jpg', './2.jpg', './3.jpg', './4.jpg', './5.jpg', './6.jpg'];
+
 class App extends Component {
     constructor(props) {
         super(props);
+        fetch(api.getDanielApi).then(res => {
+            res.json().then(data => {
+                let urls = data.Items.map(d => d.imgUrl);
+                images = images.concat(urls);
+            });
+        });
         this.state = { pic: 0, text: 0, color: 0, left: 40, top: 50, camera: 'none', tarot: null };
     }
     switchPic() {
         //TODO make more dynamic
-        let newPic = (1 + this.state.pic + Math.floor(Math.random() * 5)) % 7;
+        let newPic = (1 + this.state.pic + Math.floor(Math.random() * 5)) % images.length;
         let newText = (1 + this.state.text + Math.floor(Math.random() * 6)) % 8;
         let newColor = (1 + this.state.color + Math.floor(Math.random() * 3)) % 5;
         let newLeft = (1 + this.state.left + Math.floor(Math.random() * 2)) % 5;
@@ -24,8 +32,6 @@ class App extends Component {
             .then(res => res.json())
             .then(tarot => {
                 const upside = Math.random() > 0.5;
-                console.log(tarot);
-
                 const card = {
                     name: tarot.cards[0].name,
                     up: upside,
@@ -39,26 +45,26 @@ class App extends Component {
         this.setState({ tarot: null });
     }
     handleChange(files) {
-        console.log(files);
         const file = files[0];
         //   const cloudName = 'dizmjjtge';
-
         var fd = new FormData();
         fd.append('upload_preset', api.CLOUDINARY_UPLOAD_PRESET);
         fd.append('tags', 'whoIsDaniel'); // Optional - add tag for image admin in Cloudinary
         fd.append('file', file);
 
-        axios(api.CLOUDINARY_URL + '/w_200', {
+        axios(api.CLOUDINARY_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencode'
             },
             data: fd
         }).then(img => {
-            console.log(img);
             const url = img.data.secure_url;
+            images.push(url);
+            this.setState({ pic: images.length - 1 });
             fetch(api.setDanielApi, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -66,18 +72,11 @@ class App extends Component {
                 body: JSON.stringify({
                     imgUrl: url
                 })
-            });
+            }).then(x => console.log(x))
+                .catch(err => console.log(err));
         }).catch(err => {
             console.log(err);
         });
-
-
-        //var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-        // var xhr = new XMLHttpRequest();
-        // xhr.open('POST', url, true);
-        // xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-        // xhr.send(fd);
     }
     render() {
         let random = ['Dat ben ikke...', 'en ik..', 'en jij???¿?', 'dit ook 🤖', 'dat ben IK', 'uhu...', 'wie ben jij?', 'gijzelf!'];
@@ -96,7 +95,7 @@ class App extends Component {
 
         return (
             <div className="App"  >
-                <img src={`./${this.state.pic}.jpg`} className="daniel" alt="logo" onClick={() => this.switchPic()} />
+                <img src={images[this.state.pic]} className="daniel" alt="logo" onClick={() => this.switchPic()} />
                 <div className="datbenik" style={colorStyle}>
                     {random[this.state.text]}  </div>
                 <input type="file" id="addPhotoke" onChange={(e) => this.handleChange(e.target.files)} />

@@ -17,6 +17,22 @@ body{
 
 }
 
+.tarotBtn{
+  position: absolute;
+  top:3rem;
+  left:2rem;
+  font-size: 3rem;
+  background: tomato;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+ 
+  justify-content: center;
+  align-items: center;
+  border: 5px solid firebrick;
+
+}
+
 .addPhotoBtn{
   position: absolute;
   bottom:3rem;
@@ -35,4 +51,40 @@ body{
 input[type=file]{
   opacity: 0;
   position: fixed;
+}
+.tarotName{
+  font-size:4rem;
+  background:darkmagenta;
+  color: aquamarine;
+  padding:1rem;
+
+}
+.closeTarot{
+  width:100%;
+  height:4rem;
+  background: red;
+  color:white;
+  font-size: 1rem;
+}
+.tarotMeaning{
+  padding:2rem;
+}
+.tarotDescription{
+  padding:1rem;
+  background: lightgreen;
+  color: darkgreen;
+}
+.tarot{
+  overflow: auto;
+  font-size:2rem;
+  opacity: 0.9;
+  background: aquamarine;
+  color: darkmagenta;
+  position: absolute;
+  background: whitesmoke;
+  color: green;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
 }

@@ -12,7 +12,7 @@ class App extends Component {
         super(props);
         fetch(api.getDanielApi).then(res => {
             res.json().then(data => {
-                let urls = data.Items.map(d => d.imgUrl);
+                let urls = data.map(d => d.imgUrl);
                 images = images.concat(urls);
             });
         });

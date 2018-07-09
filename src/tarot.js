@@ -5,7 +5,7 @@ class Tarot extends Component {
     render() {
         return (
             <div className="tarot" >
-                <button className="closeTarot" onClick={() => this.props.close()}>close ✌️</button>
+                <button className="closeTarot" onClick={() => this.props.close()}>close <span role="img" aria-label="close">✌️</span></button>
                 <div className="tarotName">
                     {this.props.card.name}
                     {this.props.card.up ? '🙂' : '🙃'}
@@ -16,7 +16,7 @@ class Tarot extends Component {
                 <div className="tarotDescription">
                     {this.props.card.desc}
                 </div>
-                <button className="closeTarot" onClick={() => this.props.close()}>close ☮️</button>
+                <button className="closeTarot" onClick={() => this.props.close()}>close <span role="img" aria-label="close">☮️</span></button>
 
             </div >
         );

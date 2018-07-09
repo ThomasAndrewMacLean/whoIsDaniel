@@ -5,7 +5,7 @@ class Contact extends Component {
     render() {
         return (
             <div className="contact" >
-                <button className="closeTarot" onClick={() => this.props.close()}>back 👋</button>
+                <button className="closeTarot" onClick={() => this.props.close()}>back <span role="img" aria-label="close">👋</span></button>
                 <ul>
                     <li>
                         you want contact with daniel?
@@ -19,7 +19,7 @@ class Contact extends Component {
                 </ul>
                 get in touch:
 
-                <form>
+                <form netlify>
                     <label className="label" htmlFor="email">email</label>
                     <br />
                     <input type="email" name="email" placeholder="email" id="email" />

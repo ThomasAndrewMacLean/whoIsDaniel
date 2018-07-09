@@ -19,7 +19,7 @@ class Contact extends Component {
                 </ul>
                 get in touch:
 
-                <form netlify>
+                <form>
                     <label className="label" htmlFor="email">email</label>
                     <br />
                     <input type="email" name="email" placeholder="email" id="email" />

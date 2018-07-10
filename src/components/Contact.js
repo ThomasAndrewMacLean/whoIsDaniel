@@ -25,6 +25,12 @@ class Contact extends Component {
         return (
             <div className="contact" >
                 <button className="closeTarot" onClick={() => this.props.close()}>back <span role="img" aria-label="close">👋</span></button>
+                <form onSubmit={(e) => this.sub(e)}>
+                    <input type="name" name="email" placeholder="name" id="email" />
+                    <textarea rows="4" cols="40" name="text" placeholder="blabla..." id="contactText" />
+
+                    <input className="sendBtn" type="submit" value="send" />
+                </form>
                 <ul>
                     <li>
                         you want contact with daniel?
@@ -39,12 +45,6 @@ class Contact extends Component {
                         get in touch:
                     </li>
                 </ul>
-                <form onSubmit={(e) => this.sub(e)}>
-                    <input type="name" name="email" placeholder="name" id="email" />
-                    <textarea rows="4" cols="40" name="text" placeholder="blabla..." id="contactText" />
-
-                    <input className="sendBtn" type="submit" value="send" />
-                </form>
 
             </div >
         );

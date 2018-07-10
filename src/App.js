@@ -13,8 +13,6 @@ class App extends Component {
         fetch(api.getDanielApi).then(res => {
             res.json().then(data => {
                 let urls = data.map(d => d.imgUrl.replace('/dizmjjtge/image/upload/', '/dizmjjtge/image/upload/w_400/'));
-                console.log(data);
-
                 images = images.concat(urls);
             });
         });

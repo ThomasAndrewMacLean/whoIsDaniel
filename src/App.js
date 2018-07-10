@@ -56,6 +56,12 @@ class App extends Component {
     }
     handleChange(files) {
         const file = files[0];
+
+        var validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        if (validImageTypes.indexOf(file.type) === -1) {
+            console.log('wrong type');
+            return;
+        }
         //   const cloudName = 'dizmjjtge';
         var fd = new FormData();
         fd.append('upload_preset', api.CLOUDINARY_UPLOAD_PRESET);

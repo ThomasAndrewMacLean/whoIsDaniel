@@ -12,7 +12,7 @@ class App extends Component {
         super(props);
         fetch(api.getDanielApi).then(res => {
             res.json().then(data => {
-                let urls = data.map(d => d.imgUrl);
+                let urls = data.map(d => d.imgUrl.replace('/dizmjjtge/image/upload/', '/dizmjjtge/image/upload/w_400/'));
                 console.log(data);
 
                 images = images.concat(urls);
@@ -31,11 +31,14 @@ class App extends Component {
         this.setState({ pic: newPic, text: newText, color: newColor, left: newLeft, top: newTop, camera: 'flex' });
     }
     getTarot() {
+        this.setState({ tarot: { loading: true } });
+
         fetch(api.tarotApi)
             .then(res => res.json())
             .then(tarot => {
                 const upside = Math.random() > 0.5;
                 const card = {
+                    loading: false,
                     name: tarot.cards[0].name,
                     up: upside,
                     desc: tarot.cards[0].desc,

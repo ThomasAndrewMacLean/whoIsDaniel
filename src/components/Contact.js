@@ -35,17 +35,14 @@ class Contact extends Component {
                     <li>
                         you want to marry him?
                     </li>
+                    <li>
+                        get in touch:
+                    </li>
                 </ul>
-                get in touch:
-
                 <form onSubmit={(e) => this.sub(e)}>
-                    <label className="label" htmlFor="email">email</label>
-                    <br />
-                    <input type="email" name="email" placeholder="email" id="email" />
-                    <br />
-                    <label className="label" htmlFor="email">message</label>
+                    <input type="name" name="email" placeholder="name" id="email" />
                     <textarea rows="4" cols="40" name="text" placeholder="blabla..." id="contactText" />
-                    <br />
+
                     <input className="sendBtn" type="submit" value="send" />
                 </form>
 

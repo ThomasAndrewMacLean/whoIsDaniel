@@ -114,7 +114,7 @@ class App extends Component {
                 <img src={images[this.state.pic]} className="daniel" alt="logo" onClick={() => this.switchPic()} />
                 <div className="datbenik" style={colorStyle}>
                     {random[this.state.text]}  </div>
-                <input type="file" id="addPhotoke" onChange={(e) => this.handleChange(e.target.files)} />
+                <input type="file" id="addPhotoke" accept="image/*" capture onChange={(e) => this.handleChange(e.target.files)} />
                 <label style={cameraStyle} className="addPhotoBtn" htmlFor="addPhotoke"><span role="img" aria-label="camera">📷</span>  </label>
                 <button onClick={() => this.getTarot()} style={cameraStyle} className="tarotBtn"><span role="img" aria-label="tarotcard">🃏</span></button>
                 <button onClick={() => this.getContact()} style={cameraStyle} className="contactBtn"><span role="img" aria-label="contactBtn">💖</span></button>

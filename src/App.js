@@ -63,7 +63,7 @@ class App extends Component {
             return;
         }
         //   const cloudName = 'dizmjjtge';
-        var fd = new FormData();
+        var fd: FormData = new FormData();
         fd.append('upload_preset', api.CLOUDINARY_UPLOAD_PRESET);
         fd.append('tags', 'whoIsDaniel'); // Optional - add tag for image admin in Cloudinary
         fd.append('file', file);

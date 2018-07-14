@@ -18,7 +18,9 @@
     "postinstall": "$(npm bin)/flow-typed install"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.6",
     "eslint": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.76.0",

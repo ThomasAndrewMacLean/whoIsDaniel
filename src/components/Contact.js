@@ -27,8 +27,8 @@ class Contact extends Component {
             <div className="contact" >
                 <button className="closeTarot" onClick={() => this.props.close()}>back <span role="img" aria-label="close">👋</span></button>
                 <form onSubmit={(e) => this.sub(e)}>
-                    <input type="name" name="email" placeholder="name" id="email" />
-                    <textarea rows="4" cols="40" name="text" placeholder="blabla..." id="contactText" />
+                    <input type="name" name="email" placeholder="name" id="email"  required/>
+                    <textarea rows="4" cols="40" name="text" placeholder="blabla..." id="contactText" required/>
 
                     <input className="sendBtn" type="submit" value="send" />
                 </form>
